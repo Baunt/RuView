@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ruview-autotuner"
+version = "0.1.0"
+description = "Local RuView measurement station with Garmin FIT reference"
+requires-python = ">=3.11"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.34,<1", "fitdecode>=0.11,<1", "python-multipart>=0.0.20,<1"]
+
+[project.optional-dependencies]
+test = ["pytest>=8,<10", "httpx>=0.28,<1"]
+
+[project.scripts]
+ruview-station = "autotuner.app:main"
+ruview-capture = "autotuner.raw:main"
+
+[tool.setuptools.packages.find]
+include = ["autotuner*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
